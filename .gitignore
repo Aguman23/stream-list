@@ -12,6 +12,8 @@
 /build
 
 # misc
+*.css.map
+*.css
 .DS_Store
 .env.local
 .env.development.local
