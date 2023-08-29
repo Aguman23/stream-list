@@ -6,7 +6,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
         <Route path="/" element={<ListPage />} />
         {/* <Route path="/warehouse/:id" element={<WareHouseDetailsPage />} />
         <Route path="/warehouse/edit/:id" element={<WareHouseEditPage />} /> */}
