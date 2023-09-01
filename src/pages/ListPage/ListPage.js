@@ -1,11 +1,14 @@
-// import InventoryList from "../../components/InventoryList/InventoryList";
+import ListSection from "../../components/ListSection/ListSection";
 import "./ListPage.scss";
 
+
 function ListPage() {
+  
   return (
     <div className="list">
-      {/* <InventoryList /> */}
-    <p>Hey Agu how was your day?</p>
+      <ListSection />
+    
+
     </div>
   );
 }
