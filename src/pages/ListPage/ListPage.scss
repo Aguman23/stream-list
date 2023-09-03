@@ -1,0 +1,15 @@
+.logo {
+  background-color: black;
+  &__image {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+.body {
+  background-image: url(../../assets/images/Background.jpg);
+  background-position: center;
+  background-size: cover;
+  padding-left: 20%;
+  padding-right: 20%;
+}

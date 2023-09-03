@@ -3,17 +3,15 @@ import "./ListItem.scss";
 import { db } from "../../config/firebase";
 import {
     collection,
-    serverTimestamp,
     onSnapshot,
     query,
     orderBy,
-    addDoc,
-    deleteDoc,
     doc,
     updateDoc,
 } from "firebase/firestore";
+import { v4 as uuidv4 } from 'uuid';
 
-export default function ListItem({list}) {
+export default function ListItem({list, id}) {
     // console.log(list.media);
     const [newTitleItem, setNewTitleItem] = useState("");
     const [newRateItem, setNewRateItem] = useState([]);
@@ -22,7 +20,7 @@ export default function ListItem({list}) {
     const [editedTitle, setEditedTitle] = useState("");
     const [editedRate, setEditedRate] = useState("");
     const [editedComment, setEditedComment] = useState("");
-    const [itemArray, setItemArray] = useState([]);
+    
     
     useEffect(() => {
         const itemCollectionRef = collection(db, "lists");
@@ -32,22 +30,28 @@ export default function ListItem({list}) {
                 ...doc.data(),
                 id: doc.id,
             }));
-            setItemArray(itemArray);
-            // console.log(itemArray);
+            
         });
 
         return () => unsubscribe();
     }, []);
 
+
     const onSubmitList = async () => {
+        // console.log('working');
         const itemCollectionRef = collection(db, "lists");
 
         try {
-            await addDoc(itemCollectionRef, {
-                title: newTitleItem,
-                rate: newRateItem,
-                comment: newCommentItem,
-                createdAt: serverTimestamp(),
+            await updateDoc(doc(itemCollectionRef, id), {
+                media: [
+                    ...list.media,
+                    {
+                        title: newTitleItem,
+                        rate: newRateItem,
+                        comment: newCommentItem,
+                        id: uuidv4(),
+                    }
+                ]
             });
             setNewTitleItem("");
             setNewRateItem("");
@@ -60,15 +64,24 @@ export default function ListItem({list}) {
 
     const onDeleteSection = async (itemId) => {
         const itemCollectionRef = collection(db, "lists");
-
+        
         try {
-            await deleteDoc(doc(itemCollectionRef, itemId));
-            
+            const filteredList = list.media.filter(item => {
+                return item.id !== itemId
+            })
+            // console.log(itemId);
+            // console.log(filteredList);
+
+            await updateDoc(doc(itemCollectionRef, id), {
+                media: [
+                    ...filteredList,
+                ]
+            });
         } catch (err) {
             console.error(err);
         }
     };
-
+    
     const onEditSection = (itemId, currentTitle, currentRate, currentComment) => {
         setEditingSection(itemId);
         setEditedTitle(currentTitle);
@@ -76,20 +89,68 @@ export default function ListItem({list}) {
         setEditedComment(currentComment);
     };
 
+    // const onSaveEdit = async (itemId) => {
+    //     const itemCollectionRef = collection(db, "lists");
+
+    //     try {
+    //         await updateDoc(doc(itemCollectionRef, itemId), {
+    //             title: editedTitle,
+    //             rate: editedRate,
+    //             comment: editedComment,
+    //         });
+    //         setEditingSection(null);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // };
+
     const onSaveEdit = async (itemId) => {
         const itemCollectionRef = collection(db, "lists");
-
+    
         try {
-            await updateDoc(doc(itemCollectionRef, itemId), {
-                title: editedTitle,
-                rate: editedRate,
-                comment: editedComment,
+            const updatedMedia = list.media.map((mediaItem) => {
+                if (mediaItem.id === itemId) {
+                    return {
+                        ...mediaItem,
+                        title: editedTitle,
+                        rate: editedRate,
+                        comment: editedComment,
+                    };
+                }
+                return mediaItem;
             });
+    
+            await updateDoc(doc(itemCollectionRef, id), {
+                media: updatedMedia,
+            });
+    
             setEditingSection(null);
         } catch (err) {
             console.error(err);
         }
     };
+
+    // const onSaveEdit = async () => {
+    //     const itemCollectionRef = collection(db, "lists");
+
+    //     try {     
+    //         await updateDoc(doc(itemCollectionRef, id), {
+    //             media: [
+    //                 ...list.media,
+    //                 {
+    //                     title: editedTitle,
+    //                     rate: editedRate,
+    //                     comment: editedComment,
+    //                 }
+    //             ]    
+    //         });
+    //         setEditingSection(null);
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // };
+
+
 
     // const updateValue = (value, id) => {
     //     const updatedArray = itemArray.map(item => {

@@ -38,6 +38,7 @@ export default function ListSection() {
         try {
             await addDoc(sectionCollectionRef, {
                 title: newListSection,
+                media: [],
                 createdAt: serverTimestamp(),
             });
             setNewListSection("");
@@ -75,12 +76,18 @@ export default function ListSection() {
     return (
         <div className="section">
             
+            <div className="">
             <input
+                className="section__add-list"
+                type="text"
                 value={newListSection}
-                placeholder="Add List"
+                placeholder="Make New List..."
                 onChange={(e) => setNewListSection(e.target.value)}
             />
-            <button onClick={onSubmitList}>Submit</button>
+            </div>
+            <div>
+            <button className="section__button-1" onClick={onSubmitList}>Add the List</button>
+            </div>
             <div>
                 {sectionArray.map((list) => {
                     // console.log(list);
@@ -90,19 +97,22 @@ export default function ListSection() {
                             <>
                                 <input
                                     value={editedTitle}
+                                    type="text"
                                     onChange={(e) => setEditedTitle(e.target.value)}
                                 />
-                                <button onClick={() => onSaveEdit(list.id)}>Submit</button>
-                                <button onClick={() => setEditingSection(null)}>Cancel</button>
+                                <button className="section__button-2" onClick={() => onSaveEdit(list.id)}>Submit</button>
+                                <button className="section__button-2" onClick={() => setEditingSection(null)}>Cancel</button>
                             </>
                         ) : (
                             <>
-                                <h1>{list.title}</h1>
-                                <button onClick={() => onDeleteSection(list.id)}>Delete</button>
-                                <button onClick={() => onEditSection(list.id, list.title)}>Edit</button>
+                            <div className="section__name-container">
+                                <h1 className="section__name">{list.title}</h1>
+                            </div>
+                                <button className="section__button-2" onClick={() => onDeleteSection(list.id)}>Delete</button>
+                                <button className="section__button-2" onClick={() => onEditSection(list.id, list.title)}>Edit</button>
                             </>
                         )}
-                        <ListItem list={list}/>
+                        <ListItem list={list} id={list.id} />
                     </div>  
                 )})}
             </div>
