@@ -12,7 +12,9 @@ function ListPage() {
       <img className="logo__image"src={logo} alt="Logo" />
       </div>
       <div className="body">
+        <div className="body__container">
       <ListSection />
+        </div>
       </div>
     </div>
   );

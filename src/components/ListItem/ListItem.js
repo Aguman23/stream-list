@@ -168,16 +168,19 @@ export default function ListItem({list, id}) {
             
             <input
                 value={newTitleItem}
+                type="text"
                 placeholder="Add Title"
                 onChange={(e) => setNewTitleItem(e.target.value)}
             />
              <input
                 value={newRateItem}
+                type="text"
                 placeholder="Give your Rate 1-10"
                 onChange={(e) => setNewRateItem(e.target.value)}
             />
              <input
                 value={newCommentItem}
+                type="text"
                 placeholder="Add Comments"
                 onChange={(e) => setNewCommentItem(e.target.value)}
             />
@@ -192,15 +195,18 @@ export default function ListItem({list, id}) {
                             <>
                                 <input
                                     value={editedTitle}
+                                    type="text"
                                     onChange={(e) => setEditedTitle(e.target.value)}
                                     // onChange={(e) => updateValue(e.target.value, item.id)}
                                 />
                                 <input
                                     value={editedRate}
+                                    type="text"
                                     onChange={(e) => setEditedRate(e.target.value)}
                                 />
                                 <input
                                     value={editedComment}
+                                    type="text"
                                     onChange={(e) => setEditedComment(e.target.value)}
                                 />
                                 <button onClick={() => onSaveEdit(mediaItem.id)}>Submit</button>
