@@ -12,7 +12,6 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ListItem({list, id}) {
-    // console.log(list.media);
     const [newTitleItem, setNewTitleItem] = useState("");
     const [newRateItem, setNewRateItem] = useState([]);
     const [newCommentItem, setNewCommentItem] = useState("");
@@ -21,24 +20,7 @@ export default function ListItem({list, id}) {
     const [editedRate, setEditedRate] = useState("");
     const [editedComment, setEditedComment] = useState("");
     
-    
-    useEffect(() => {
-        const itemCollectionRef = collection(db, "lists");
-        const queryItem = query(itemCollectionRef, orderBy("createdAt"));
-        const unsubscribe = onSnapshot(queryItem, (snapshot) => {
-            const itemArray = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            
-        });
-
-        return () => unsubscribe();
-    }, []);
-
-
     const onSubmitList = async () => {
-        // console.log('working');
         const itemCollectionRef = collection(db, "lists");
 
         try {
@@ -69,8 +51,6 @@ export default function ListItem({list, id}) {
             const filteredList = list.media.filter(item => {
                 return item.id !== itemId
             })
-            // console.log(itemId);
-            // console.log(filteredList);
 
             await updateDoc(doc(itemCollectionRef, id), {
                 media: [
@@ -88,21 +68,6 @@ export default function ListItem({list, id}) {
         setEditedRate(currentRate);
         setEditedComment(currentComment);
     };
-
-    // const onSaveEdit = async (itemId) => {
-    //     const itemCollectionRef = collection(db, "lists");
-
-    //     try {
-    //         await updateDoc(doc(itemCollectionRef, itemId), {
-    //             title: editedTitle,
-    //             rate: editedRate,
-    //             comment: editedComment,
-    //         });
-    //         setEditingSection(null);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
 
     const onSaveEdit = async (itemId) => {
         const itemCollectionRef = collection(db, "lists");
@@ -130,61 +95,28 @@ export default function ListItem({list, id}) {
         }
     };
 
-    // const onSaveEdit = async () => {
-    //     const itemCollectionRef = collection(db, "lists");
-
-    //     try {     
-    //         await updateDoc(doc(itemCollectionRef, id), {
-    //             media: [
-    //                 ...list.media,
-    //                 {
-    //                     title: editedTitle,
-    //                     rate: editedRate,
-    //                     comment: editedComment,
-    //                 }
-    //             ]    
-    //         });
-    //         setEditingSection(null);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
-
-
-
-    // const updateValue = (value, id) => {
-    //     const updatedArray = itemArray.map(item => {
-    //         if (item.id === id) {
-    //             item.title = value;
-    //         }
-    //         return item;
-    //     })
-    //     console.log(updatedArray);
-    //     setItemArray(updatedArray);
-    // }
-
     return (
         <div className="section">
             
             <input
                 value={newTitleItem}
                 type="text"
-                placeholder="Add Title"
+                placeholder="Add a Title..."
                 onChange={(e) => setNewTitleItem(e.target.value)}
             />
              <input
                 value={newRateItem}
                 type="text"
-                placeholder="Give your Rate 1-10"
+                placeholder="Give your Rate 1-10..."
                 onChange={(e) => setNewRateItem(e.target.value)}
             />
              <input
                 value={newCommentItem}
                 type="text"
-                placeholder="Add Comments"
+                placeholder="Add Comments..."
                 onChange={(e) => setNewCommentItem(e.target.value)}
             />
-            <button onClick={onSubmitList}>Submit</button>
+            <button className="item__button-1" onClick={onSubmitList}>Submit</button>
             
             <div>
             
@@ -195,32 +127,40 @@ export default function ListItem({list, id}) {
                             <>
                                 <input
                                     value={editedTitle}
+                                    className="section section__edit"
                                     type="text"
                                     onChange={(e) => setEditedTitle(e.target.value)}
-                                    // onChange={(e) => updateValue(e.target.value, item.id)}
                                 />
                                 <input
                                     value={editedRate}
+                                    className="section section__edit"
                                     type="text"
                                     onChange={(e) => setEditedRate(e.target.value)}
                                 />
                                 <input
                                     value={editedComment}
+                                    className="section section__edit"
                                     type="text"
                                     onChange={(e) => setEditedComment(e.target.value)}
                                 />
-                                <button onClick={() => onSaveEdit(mediaItem.id)}>Submit</button>
-                                <button onClick={() => setEditingSection(null)}>Cancel</button>
+                                <div className="pad">
+                                <button className="item__button-2" onClick={() => onSaveEdit(mediaItem.id)}>Submit</button>
+                                <button className="item__button-2" onClick={() => setEditingSection(null)}>Cancel</button>
+                                </div>
                             </>
                         ) : (
                         
                             
                                 <>
-                                    <h3>{mediaItem?.title}</h3>
-                                    <h3>{mediaItem?.rate}</h3>
-                                    <h3>{mediaItem?.comment}</h3>
-                                    <button onClick={() => onDeleteSection(mediaItem?.id)}>Delete</button>
-                                    <button onClick={() => onEditSection(mediaItem?.id, mediaItem?.title, mediaItem?.rate, mediaItem?.comment)}>Edit</button>
+                                <div className="item__container" >
+                                    <h3 className="item__items">{mediaItem?.title}</h3>
+                                    <h3 className="item__items">{mediaItem?.rate}/10</h3>
+                                    <h3 className="item__items-2">"{mediaItem?.comment}"</h3>
+                                </div>
+                                <div className="pad">
+                                    <button className="item__button-2" onClick={() => onDeleteSection(mediaItem?.id)}>Delete</button>
+                                    <button className="item__button-2" onClick={() => onEditSection(mediaItem?.id, mediaItem?.title, mediaItem?.rate, mediaItem?.comment)}>Edit</button>
+                                </div>
                                 </>
                             
                         )}
