@@ -8,8 +8,8 @@
     color: white;
     font-size: 1rem;
     background-color: #ff7747;
-    width: 40vw;
-    height: 2.5rem;
+    width: 30vw;
+    height: 2rem;
     margin-bottom: 1rem;
     border: 1px solid black;
     border-radius: 45px;
@@ -20,7 +20,6 @@
     background-color: #ff7747;
     width: 20vw;
     margin-top: 0.5rem;
-
     margin-bottom: 1rem;
     height: 2rem;
     border: 1px solid black;
@@ -31,9 +30,9 @@
     margin-bottom: 0.5rem;
   }
   &__container {
-    width: 60vw;
+    width: 56vw;
     margin-top: 0.5rem;
-    background-color: silver;
+    background-color: #a19f9d;
     color: white;
     border-radius: 10px;
     display: flex;
@@ -42,16 +41,22 @@
     justify-content: start;
   }
   &__items {
-    padding: 0.5rem;
+    padding: 0.25rem;
     border-bottom: solid 1px #e7e6e6;
-    text-align: center;
     width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0rem;
+    padding-right: 0rem;
   }
   &__items-2 {
-    padding: 0.5rem;
-    padding-bottom: 1rem;
+    padding: 0.25rem;
     text-align: left;
     width: 80%;
+  }
+  &__body {
+    font-size: 0.75rem;
   }
 }
 .pad {

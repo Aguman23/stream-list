@@ -153,9 +153,15 @@ export default function ListItem({list, id}) {
                             
                                 <>
                                 <div className="item__container" >
-                                    <h3 className="item__items">{mediaItem?.title}</h3>
-                                    <h3 className="item__items">{mediaItem?.rate}/10</h3>
-                                    <h3 className="item__items-2">"{mediaItem?.comment}"</h3>
+                                    <div className="item__items">
+                                    <div>
+                                    <h3 className="item__body">{mediaItem?.title}</h3>
+                                    </div>
+                                    <div>
+                                    <h3 className="item__body">{mediaItem?.rate}/10</h3>
+                                    </div>
+                                    </div>
+                                    <h3 className="item__body item__items-2">"{mediaItem?.comment}"</h3>
                                 </div>
                                 <div className="pad">
                                     <button className="item__button-2" onClick={() => onDeleteSection(mediaItem?.id)}>Delete</button>

@@ -112,8 +112,8 @@ export default function ListSection() {
                                 <h1 className="section__name">{list.title}</h1>
                             </div>
                             <div className="pad">
-                                <button className="section__button-2" onClick={() => onEditSection(list.id, list.title)}>Edit</button>
-                                <button className="section__button-2" onClick={() => onDeleteSection(list.id)}>Delete</button>
+                                <button className="section__button-2" onClick={() => onEditSection(list.id, list.title)}>Edit Name</button>
+                                <button className="section__button-2" onClick={() => onDeleteSection(list.id)}>Delete List</button>
                             </div>
                             </>
                         )}
