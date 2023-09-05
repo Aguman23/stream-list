@@ -104,7 +104,7 @@ export default function ListItem({list, id}) {
              <input
                 value={newRateItem}
                 type="text"
-                placeholder="Give your Rate 1-10..."
+                placeholder="Give your Rating 1-10..."
                 onChange={(e) => setNewRateItem(e.target.value)}
             />
              <input
