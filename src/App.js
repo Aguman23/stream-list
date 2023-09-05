@@ -1,4 +1,5 @@
 import ListPage from "./pages/ListPage/ListPage";
+import PreviewPage from "./pages/PreviewPage/PreviewPage";
 import './App.scss';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -7,8 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ListPage />} />
-        {/* <Route path="/warehouse/:id" element={<WareHouseDetailsPage />} />
-        <Route path="/warehouse/edit/:id" element={<WareHouseEditPage />} /> */}
+        <Route path="/preview" element={<PreviewPage />} />
       </Routes>
     </BrowserRouter>
   );
