@@ -16,9 +16,21 @@
   }
   &__button-2 {
     color: white;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     background-color: #ff7747;
-    width: 20vw;
+    width: 23vw;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    height: 2rem;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  &__button-3 {
+    color: white;
+    font-size: 0.75rem;
+    background-color: #ff7747;
+    width: 26vw;
+    margin-left: 0.9rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     height: 2rem;

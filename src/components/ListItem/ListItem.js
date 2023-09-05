@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./ListItem.scss";
 import { db } from "../../config/firebase";
 import {
     collection,
-    onSnapshot,
-    query,
-    orderBy,
     doc,
     updateDoc,
 } from "firebase/firestore";
@@ -96,7 +93,7 @@ export default function ListItem({list, id}) {
     };
 
     return (
-        <div className="section">
+        <div className="item">
             
             <input
                 value={newTitleItem}
@@ -164,8 +161,8 @@ export default function ListItem({list, id}) {
                                     <h3 className="item__body item__items-2">"{mediaItem?.comment}"</h3>
                                 </div>
                                 <div className="pad">
-                                    <button className="item__button-2" onClick={() => onDeleteSection(mediaItem?.id)}>Delete</button>
-                                    <button className="item__button-2" onClick={() => onEditSection(mediaItem?.id, mediaItem?.title, mediaItem?.rate, mediaItem?.comment)}>Edit</button>
+                                    <button className="item__button-2" onClick={() => onEditSection(mediaItem?.id, mediaItem?.title, mediaItem?.rate, mediaItem?.comment)}>Edit Entry</button>
+                                    <button className="item__button-3" onClick={() => onDeleteSection(mediaItem?.id)}>Delete Entry</button>
                                 </div>
                                 </>
                             

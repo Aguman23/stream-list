@@ -75,7 +75,19 @@ export default function ListSection() {
 
     return (
         <div className="section">
-            
+
+            <div className="section__container">
+                <div className="section__items">
+                <h3 className="section__body">Welcome to Stream List, a web application made for helping you recommend content to your friends and social networks.
+                                              Share your favorite movies and shows from all major streaming services. 
+                                              Start by creating lists and adding entries. 
+                                              Hit the preview button when your done, and download your list at the end of the preview page.</h3>
+                </div>
+            </div>
+
+            <div className="section__name-container-2">
+            <h1 className="section__name-2">Create Your Lists</h1>
+            </div>
             <div className="">
             <input
                 className="section__add-list"
@@ -90,7 +102,6 @@ export default function ListSection() {
             </div>
             <div>
                 {sectionArray.map((list) => {
-                    // console.log(list);
                 return(
                     <div key={list.id}>
                         {editingSection === list.id ? (
