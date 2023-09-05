@@ -35,6 +35,10 @@ export default function ListSection() {
     }, []);
 
     const onSubmitList = async () => {
+        
+        if (newListSection === "") {
+        return;
+        }        
         try {
             await addDoc(sectionCollectionRef, {
                 title: newListSection,
@@ -46,6 +50,7 @@ export default function ListSection() {
         } catch (err) {
             console.error(err);
         }
+    
     };
 
     const onDeleteSection = async (sectionId) => {
@@ -91,8 +96,8 @@ export default function ListSection() {
             <div className="">
             <input
                 className="section__add-list"
-                type="text"
-                value={newListSection}
+                type="text" required
+                value={newListSection} 
                 placeholder="List Name..."
                 onChange={(e) => setNewListSection(e.target.value)}
             />

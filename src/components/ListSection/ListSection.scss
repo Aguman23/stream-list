@@ -54,16 +54,16 @@
   }
   &__name-container {
     width: 64vw;
-    height: 3rem;
     margin-top: 0.5rem;
     background-color: #7d7b79;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     &-2 {
       width: 64vw;
-      height: 3rem;
+
       margin-top: 0.5rem;
       margin-bottom: 2rem;
       background-color: #7d7b79;

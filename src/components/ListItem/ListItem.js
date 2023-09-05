@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function ListItem({list, id}) {
     const [newTitleItem, setNewTitleItem] = useState("");
-    const [newRateItem, setNewRateItem] = useState([]);
+    const [newRateItem, setNewRateItem] = useState("");
     const [newCommentItem, setNewCommentItem] = useState("");
     const [editingSection, setEditingSection] = useState(null);
     const [editedTitle, setEditedTitle] = useState("");
@@ -18,10 +18,16 @@ export default function ListItem({list, id}) {
     const [editedComment, setEditedComment] = useState("");
     
     const onSubmitList = async () => {
-        const itemCollectionRef = collection(db, "lists");
 
+        if (newTitleItem === "" || newRateItem ==="" || newCommentItem==="") {
+            return;
+            }  
+        
+        const itemCollectionRef = collection(db, "lists");
+       
         try {
             await updateDoc(doc(itemCollectionRef, id), {
+                               
                 media: [
                     ...list.media,
                     {
