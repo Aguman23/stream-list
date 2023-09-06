@@ -137,6 +137,9 @@ export default function ListSection() {
                     </div>  
                 )})}
             </div>
+            <div>
+            <button className="section__button-3">Preview</button>
+            </div>
         </div>
     );
 }
