@@ -48,32 +48,22 @@
     }
   }
 }
-input[type="text"] {
-  width: 56vw;
-  height: 1.5rem;
-  border-radius: 5px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  background-color: white;
-  border: 1px solid black;
-}
 
-input::placeholder {
-  color: black;
-}
-.pad {
-  display: flex;
-  justify-content: space-evenly;
-}
 .logo {
   background-color: #111111;
-  height: 11.5244rem;
+  height: 55vw;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 0rem;
+  margin: 0rem;
+  padding: 0rem;
   &__image {
-    width: 16rem;
+    width: 72vw;
+    height: 55vw;
+    margin: 0rem;
+    padding: 0rem;
   }
 }
 .body {
@@ -86,6 +76,7 @@ input::placeholder {
   padding-right: 15%;
   display: flex;
   justify-content: center;
+  margin-bottom: 0rem;
   &__container {
     background-color: #111111;
     width: 70vw;
