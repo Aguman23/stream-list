@@ -2,6 +2,8 @@ import PreviewSection from "../../components/PreviewSection/PreviewSection";
 import "./PreviewPage.scss";
 import React from 'react';
 import html2canvas from 'html2canvas';
+import Arrow from "../../assets/icons/left-chevron.png"
+import { Link } from "react-router-dom";
 
 function PreviewPage() {
   
@@ -31,19 +33,22 @@ function PreviewPage() {
     <div>
 
       <div className="preview-ends-1">
+      <Link to={`/`}>
       <div>
-      {/* Image */}
-      <p>&#60;--</p>
+      <img className="preview-ends__back" src={Arrow} alt="Arrow" />
       </div>
+      </Link>
       </div>
 
       <div ref={printRef}><PreviewSection /></div>
       
      
      <div className="preview-ends-2">
+     
      <div>
      <button  type="button" onClick={handleDownloadImage} className="preview-ends__button">Download</button>
      </div>
+     
      </div>
      
     </div>

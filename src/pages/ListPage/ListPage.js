@@ -1,6 +1,6 @@
 import ListSection from "../../components/ListSection/ListSection";
 import "./ListPage.scss";
-import logo from '../../assets/logo/logo.jpg'
+import logo from '../../assets/logo/logoF.jpg'
 
 
 function ListPage() {

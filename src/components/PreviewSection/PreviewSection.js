@@ -8,7 +8,7 @@ import {
     query,
     orderBy,
 } from "firebase/firestore";
-import logo from '../../assets/logo/logo.jpg'
+import logo from '../../assets/logo/logoF.jpg'
 
 export default function ListSection() {
     const [sectionArray, setSectionArray] = useState([]);

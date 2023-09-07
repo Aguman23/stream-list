@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ListItem from "../../components/ListItem/ListItem";
 import "./ListSection.scss";
 import { db } from "../../config/firebase";
+import { Link } from "react-router-dom";
 import {
     collection,
     serverTimestamp,
@@ -93,6 +94,7 @@ export default function ListSection() {
             <div className="section__name-container-2">
             <h1 className="section__name-2">Create Your Lists</h1>
             </div>
+            
             <div className="">
             <input
                 className="section__add-list"
@@ -137,9 +139,11 @@ export default function ListSection() {
                     </div>  
                 )})}
             </div>
+            <Link to={`/preview`}>
             <div>
             <button className="section__button-3">Preview</button>
             </div>
+            </Link>
         </div>
     );
 }
