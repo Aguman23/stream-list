@@ -49,7 +49,7 @@
   }
 }
 
-.logo {
+.preview-logo {
   background-color: #111111;
   height: 55vw;
   width: 100%;
@@ -61,15 +61,15 @@
   padding: 0rem;
   &__image {
     width: 72vw;
-    height: 50vw;
+    height: 55vw;
     margin: 0rem;
     padding: 0rem;
   }
 }
-.body {
+.preview-body {
   background-image: url(../../assets/images/Background3.jpg);
   background-position: center;
-  height: 100%;
+  height: 100vw;
   width: 100%;
   min-height: 500px;
   padding-left: 15%;
@@ -80,7 +80,7 @@
   &__container {
     background-color: #111111;
     width: 70vw;
-    height: 100%;
+    height: 100vw;
     min-height: 500px;
   }
 }

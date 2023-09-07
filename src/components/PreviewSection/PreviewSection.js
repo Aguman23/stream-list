@@ -30,11 +30,11 @@ export default function ListSection() {
 
     return (
         <div>
-            <div className="logo">
-      <img className="logo__image"src={logo} alt="Logo" />
+            <div className="preview-logo">
+      <img className="preview-logo__image"src={logo} alt="Logo" />
       </div>
-      <div className="body">
-        <div className="body__container">
+      <div className="preview-body">
+        <div className="preview-body__container">
           <div className="preview-section">
             <div>
                         {sectionArray.map((list) => {
