@@ -1,3 +1,5 @@
+@use "../../styles/partials/mixins" as *;
+
 .preview-section {
   display: flex;
   flex-direction: column;
@@ -38,20 +40,23 @@
     justify-content: center;
     text-align: center;
     padding-bottom: 0.25rem;
+    @include desktop {
+      width: 50vw;
+    }
   }
+
   &__name {
     color: white;
     font-size: 1.25rem;
-    &-2 {
-      color: white;
-      font-size: 1.375rem;
+    @include desktop {
+      font-size: 1.5rem;
     }
   }
 }
 
 .preview-logo {
   background-color: #111111;
-  height: 55vw;
+  height: 10rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -60,8 +65,8 @@
   margin: 0rem;
   padding: 0rem;
   &__image {
-    width: 80vw;
-    height: 36vw;
+    width: 16rem;
+    height: 7rem;
     margin: 0rem;
     padding: 0rem;
   }
@@ -69,18 +74,26 @@
 .preview-body {
   background-image: url(../../assets/images/Background3.jpg);
   background-position: center;
-  height: 100vw;
+  height: 100%;
   width: 100%;
-  min-height: 500px;
+  min-height: 29.36vw;
   padding-left: 15%;
   padding-right: 15%;
   display: flex;
   justify-content: center;
   margin-bottom: 0rem;
+  @include desktop {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
   &__container {
     background-color: #111111;
     width: 70vw;
-    height: 100vw;
-    min-height: 500px;
+    height: 100%;
+    min-height: 29.36vw;
+    padding-bottom: 2rem;
   }
+}
+.black {
+  background-color: #111111;
 }

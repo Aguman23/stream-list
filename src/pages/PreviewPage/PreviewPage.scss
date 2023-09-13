@@ -1,6 +1,6 @@
 .preview-ends {
   &-1 {
-    height: 3rem;
+    height: 4rem;
     width: 100%;
     background-color: #7d7b79;
     display: flex;
@@ -21,7 +21,7 @@
     color: white;
     font-size: 16px;
     background-color: #ff7747;
-    width: 40vw;
+    width: 15rem;
     height: 2rem;
     border: 1px solid red;
     border-radius: 20px;
@@ -29,4 +29,7 @@
   &__back {
     width: 18px;
   }
+}
+.black {
+  background-color: #111111;
 }

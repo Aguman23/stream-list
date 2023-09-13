@@ -30,7 +30,7 @@ function PreviewPage() {
 
   return (
     
-    <div>
+    <div className="black">
 
       <div className="preview-ends-1">
       <Link to={`/`}>

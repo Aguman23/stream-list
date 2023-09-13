@@ -29,7 +29,7 @@ export default function ListSection() {
 
 
     return (
-        <div>
+        <div className="black">
             <div className="preview-logo">
       <img className="preview-logo__image"src={logo} alt="Logo" />
       </div>

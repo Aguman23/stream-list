@@ -1,3 +1,5 @@
+@use "../../styles/partials/mixins" as *;
+
 .preview-item {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    border-bottom: solid 1px #d5d3d0;
+    @include desktop {
+      width: 50vw;
+    }
   }
   &__items {
     padding: 0.25rem;
@@ -23,13 +29,22 @@
     align-items: center;
     padding-left: 0rem;
     padding-right: 0rem;
+    @include desktop {
+      padding: 0.5rem;
+    }
   }
   &__items-2 {
     padding: 0.25rem;
     text-align: left;
     width: 80%;
+    @include desktop {
+      padding: 0.5rem;
+    }
   }
   &__body {
     font-size: 0.75rem;
+    @include desktop {
+      font-size: 1rem;
+    }
   }
 }
