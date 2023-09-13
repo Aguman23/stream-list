@@ -15,6 +15,10 @@
     margin-bottom: 1rem;
     border: 1px solid black;
     border-radius: 45px;
+    @include desktop {
+      font-size: 1.25rem;
+      width: 10vw;
+    }
   }
   &__button-2 {
     color: white;
@@ -26,6 +30,11 @@
     height: 2rem;
     border: 1px solid black;
     border-radius: 20px;
+    @include desktop {
+      font-size: 1rem;
+      width: 7vw;
+      margin-top: 1rem;
+    }
   }
   &__button-3 {
     color: white;
@@ -38,6 +47,11 @@
     height: 2rem;
     border: 1px solid black;
     border-radius: 20px;
+    @include desktop {
+      font-size: 1rem;
+      width: 7vw;
+      margin-top: 1rem;
+    }
   }
   &__edit {
     margin-top: 1rem;
@@ -53,6 +67,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    @include desktop {
+      width: 46vw;
+    }
   }
   &__items {
     padding: 0.25rem;
@@ -63,14 +80,25 @@
     align-items: center;
     padding-left: 0rem;
     padding-right: 0rem;
+    @include desktop {
+      padding: 0.5rem;
+      padding-left: 0rem;
+      padding-right: 0rem;
+    }
   }
   &__items-2 {
     padding: 0.25rem;
     text-align: left;
     width: 80%;
+    @include desktop {
+      padding: 0.5rem;
+    }
   }
   &__body {
     font-size: 0.75rem;
+    @include desktop {
+      font-size: 1rem;
+    }
   }
 }
 .pad {

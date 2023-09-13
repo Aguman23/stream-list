@@ -16,6 +16,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    @include desktop {
+      width: 54vw;
+    }
   }
   &__items {
     padding: 0.75rem;
@@ -28,6 +31,9 @@
   }
   &__body {
     font-size: 0.75rem;
+    @include desktop {
+      font-size: 1rem;
+    }
   }
   &__button-1 {
     color: white;
@@ -38,6 +44,10 @@
     margin-bottom: 1rem;
     border: 1px solid black;
     border-radius: 45px;
+    @include desktop {
+      font-size: 1.25rem;
+      width: 10vw;
+    }
   }
   &__button-2 {
     color: white;
@@ -49,12 +59,17 @@
     height: 2rem;
     border: 1px solid black;
     border-radius: 20px;
+    @include desktop {
+      font-size: 1rem;
+      width: 7vw;
+      margin-top: 1rem;
+    }
   }
   &__button-3 {
     color: white;
     font-size: 1rem;
     background-color: #ff7747;
-    width: 40vw;
+    width: 12rem;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     height: 2rem;
@@ -75,6 +90,10 @@
     justify-content: center;
     text-align: center;
     padding-bottom: 0.25rem;
+    @include desktop {
+      width: 54vw;
+      margin-top: 2rem;
+    }
     &-2 {
       width: 64vw;
       margin-top: 0.5rem;
@@ -86,14 +105,23 @@
       justify-content: center;
       padding-bottom: 0.25rem;
       padding-top: 0.25rem;
+      @include desktop {
+        width: 54vw;
+      }
     }
   }
   &__name {
     color: white;
     font-size: 1.25rem;
+    @include desktop {
+      font-size: 1.5rem;
+    }
     &-2 {
       color: white;
       font-size: 1.375rem;
+      @include desktop {
+        font-size: 1.625rem;
+      }
     }
   }
 }
@@ -107,6 +135,12 @@ input[type="text"] {
   font-size: 0.75rem;
   background-color: white;
   border: 1px solid black;
+  @include desktop {
+    width: 46vw;
+    font-size: 1rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
 }
 
 input::placeholder {
