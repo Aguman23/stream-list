@@ -1,21 +1,33 @@
 import { useState, useEffect } from "react";
 import PreviewItem from "../../components/PreviewItem/PreviewItem";
 import "./PreviewSection.scss";
-import { db } from "../../config/firebase";
+import { db, auth } from "../../config/firebase";
 import {
     collection,
     onSnapshot,
     query,
+    where,
     orderBy,
 } from "firebase/firestore";
 import logo from '../../assets/logo/logoF.jpg'
 
-export default function ListSection() {
+export default function PreviewSection() {
     const [sectionArray, setSectionArray] = useState([]);
     const sectionCollectionRef = collection(db, "lists");
 
     useEffect(() => {
-        const querySection = query(sectionCollectionRef, orderBy("createdAt"));
+        const userId = auth?.currentUser?.uid;
+        console.log("UserId: ", userId); // Log to see the value of userId
+    
+        if (!userId) {
+            console.error("User is not authenticated");
+            return;
+        }
+        const querySection = query(
+            sectionCollectionRef,
+            where("userId", "==", auth?.currentUser?.uid),
+             orderBy("createdAt")
+             );
         const unsubscribe = onSnapshot(querySection, (snapshot) => {
             const sectionArray = snapshot.docs.map((doc) => ({
                 ...doc.data(),

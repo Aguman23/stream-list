@@ -33,7 +33,7 @@ function PreviewPage() {
     <div className="black">
 
       <div className="preview-ends-1">
-      <Link to={`/`}>
+      <Link to={`/listpage`}>
       <div>
       <img className="preview-ends__back" src={Arrow} alt="Arrow" />
       </div>

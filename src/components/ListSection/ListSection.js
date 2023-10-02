@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ListItem from "../../components/ListItem/ListItem";
 import "./ListSection.scss";
-import { db } from "../../config/firebase";
+import { db, auth } from "../../config/firebase";
 import { Link } from "react-router-dom";
 import {
     collection,
@@ -12,6 +12,7 @@ import {
     addDoc,
     deleteDoc,
     doc,
+    where,
     updateDoc,
 } from "firebase/firestore";
 
@@ -23,7 +24,18 @@ export default function ListSection() {
     const sectionCollectionRef = collection(db, "lists");
 
     useEffect(() => {
-        const querySection = query(sectionCollectionRef, orderBy("createdAt"));
+        const userId = auth?.currentUser?.uid;
+        console.log("UserId: ", userId); // Log to see the value of userId
+    
+        if (!userId) {
+            console.error("User is not authenticated");
+            return;
+        }
+        const querySection = query(
+            sectionCollectionRef,
+            where("userId", "==", auth?.currentUser?.uid),
+             orderBy("createdAt")
+             );
         const unsubscribe = onSnapshot(querySection, (snapshot) => {
             const sectionArray = snapshot.docs.map((doc) => ({
                 ...doc.data(),
@@ -45,6 +57,7 @@ export default function ListSection() {
                 title: newListSection,
                 media: [],
                 createdAt: serverTimestamp(),
+                userId: auth?.currentUser?.uid,
             });
             setNewListSection("");
             
