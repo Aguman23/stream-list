@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import ListItem from "../../components/ListItem/ListItem";
 import "./ListSection.scss";
 import { db, auth } from "../../config/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     collection,
     serverTimestamp,
@@ -16,34 +18,43 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
+
+
 export default function ListSection() {
+    
     const [newListSection, setNewListSection] = useState("");
     const [editingSection, setEditingSection] = useState(null);
     const [editedTitle, setEditedTitle] = useState("");
     const [sectionArray, setSectionArray] = useState([]);
     const sectionCollectionRef = collection(db, "lists");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const userId = auth?.currentUser?.uid;
-        console.log("UserId: ", userId); // Log to see the value of userId
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is authenticated with UID:", user.uid);
+                const userId = user.uid;
     
-        if (!userId) {
-            console.error("User is not authenticated");
-            return;
-        }
-        const querySection = query(
-            sectionCollectionRef,
-            where("userId", "==", auth?.currentUser?.uid),
-             orderBy("createdAt")
-             );
-        const unsubscribe = onSnapshot(querySection, (snapshot) => {
-            const sectionArray = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setSectionArray(sectionArray);
+                const querySection = query(
+                    sectionCollectionRef,
+                    where("userId", "==", userId),
+                    orderBy("createdAt")
+                );
+    
+                const unsubscribeSnapshot = onSnapshot(querySection, (snapshot) => {
+                    const sectionArray = snapshot.docs.map((doc) => ({
+                        ...doc.data(),
+                        id: doc.id,
+                    }));
+                    setSectionArray(sectionArray);
+                });
+    
+                return () => unsubscribeSnapshot();
+            } else {
+                console.error("User is not authenticated");
+            }
         });
-
+    
         return () => unsubscribe();
     }, []);
 
@@ -90,6 +101,17 @@ export default function ListSection() {
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const logOut = async (event) => {
+        try{
+            event.preventDefault();
+            await signOut(auth)
+            navigate('/');
+        } catch(err){
+            console.error(err);
+        }
+        
     };
 
     return (
@@ -155,6 +177,11 @@ export default function ListSection() {
             <Link to={`/preview`}>
             <div>
             <button className="section__button-3">Preview</button>
+            </div>
+            </Link>
+            <Link to={`/`}>
+            <div>
+            <button className="section__button-4" type="button" onClick={logOut}>Log Out</button>
             </div>
             </Link>
         </div>

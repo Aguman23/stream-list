@@ -1,25 +1,42 @@
 import { auth, googleProvider } from "../../config/firebase"
-import { createUserWithEmailAndPassword, getRedirectResult, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getRedirectResult, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 export const Auth = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
+    const [loginemail,setLoginEmail] = useState("");
+    const [loginpassword,setLoginPassword] = useState("");
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     
-
-
     console.log(auth?.currentUser?.email);
    
+    const register = async (event) => {
+        try {
+            event.preventDefault();
+            await createUserWithEmailAndPassword(
+                auth,
+                registerEmail,
+                registerPassword
+          );
+          navigate('/listpage');
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
     const signIn = async (event) => {
         try{
             event.preventDefault();
-            await createUserWithEmailAndPassword(auth, email, password)
+            await signInWithEmailAndPassword(
+                auth,
+                loginemail,
+                loginpassword)
             navigate('/listpage');
         } catch(err){
-            console.error(err);
+          console.error(err);
         }
         
     };
@@ -65,16 +82,29 @@ export const Auth = () => {
 
     return(
         <form>
-                       
+            <h3> Register User</h3>
             <input 
                 placeholder="Email..." 
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+            />
+            <input 
+                placeholder="Password..." 
+                type="password"
+                onChange={(e) => setRegisterPassword(e.target.value)}
+            />
+
+            <button type="button" onClick={register}>Create User</button>
+
+            <h3> Login User</h3>           
+            <input 
+                placeholder="Email..." 
+                onChange={(e) => setLoginEmail(e.target.value)}
             />
 
             <input 
                 placeholder="Password..." 
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setLoginPassword(e.target.value)}
             />
             
             <button type="button" onClick={signIn}>Sign In</button>

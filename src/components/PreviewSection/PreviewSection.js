@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PreviewItem from "../../components/PreviewItem/PreviewItem";
 import "./PreviewSection.scss";
 import { db, auth } from "../../config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import {
     collection,
     onSnapshot,
@@ -16,26 +17,31 @@ export default function PreviewSection() {
     const sectionCollectionRef = collection(db, "lists");
 
     useEffect(() => {
-        const userId = auth?.currentUser?.uid;
-        console.log("UserId: ", userId); // Log to see the value of userId
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User is authenticated with UID:", user.uid);
+                const userId = user.uid;
     
-        if (!userId) {
-            console.error("User is not authenticated");
-            return;
-        }
-        const querySection = query(
-            sectionCollectionRef,
-            where("userId", "==", auth?.currentUser?.uid),
-             orderBy("createdAt")
-             );
-        const unsubscribe = onSnapshot(querySection, (snapshot) => {
-            const sectionArray = snapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setSectionArray(sectionArray);
+                const querySection = query(
+                    sectionCollectionRef,
+                    where("userId", "==", userId),
+                    orderBy("createdAt")
+                );
+    
+                const unsubscribeSnapshot = onSnapshot(querySection, (snapshot) => {
+                    const sectionArray = snapshot.docs.map((doc) => ({
+                        ...doc.data(),
+                        id: doc.id,
+                    }));
+                    setSectionArray(sectionArray);
+                });
+    
+                return () => unsubscribeSnapshot();
+            } else {
+                console.error("User is not authenticated");
+            }
         });
-
+    
         return () => unsubscribe();
     }, []);
 
