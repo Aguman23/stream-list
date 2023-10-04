@@ -1,32 +1,18 @@
+import "./Auth.scss";
 import { auth, googleProvider } from "../../config/firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getRedirectResult, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword, getRedirectResult, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth"
 
 export const Auth = () => {
     const [loginemail,setLoginEmail] = useState("");
     const [loginpassword,setLoginPassword] = useState("");
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     
     console.log(auth?.currentUser?.email);
    
-    const register = async (event) => {
-        try {
-            event.preventDefault();
-            await createUserWithEmailAndPassword(
-                auth,
-                registerEmail,
-                registerPassword
-          );
-          navigate('/listpage');
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
     const signIn = async (event) => {
         try{
             event.preventDefault();
@@ -62,16 +48,6 @@ export const Auth = () => {
         }
       };
 
-    const logOut = async (event) => {
-        try{
-            event.preventDefault();
-            await signOut(auth)
-            navigate('/');
-        } catch(err){
-            console.error(err);
-        }
-        
-    };
     useEffect(() => {
         handleRedirectResult();
         
@@ -81,35 +57,49 @@ export const Auth = () => {
       }, [isAuthenticated, navigate]);
 
     return(
-        <form>
-            <h3> Register User</h3>
-            <input 
-                placeholder="Email..." 
-                onChange={(e) => setRegisterEmail(e.target.value)}
-            />
-            <input 
-                placeholder="Password..." 
-                type="password"
-                onChange={(e) => setRegisterPassword(e.target.value)}
-            />
-
-            <button type="button" onClick={register}>Create User</button>
-
-            <h3> Login User</h3>           
-            <input 
-                placeholder="Email..." 
-                onChange={(e) => setLoginEmail(e.target.value)}
-            />
-
-            <input 
-                placeholder="Password..." 
-                type="password"
-                onChange={(e) => setLoginPassword(e.target.value)}
-            />
+        <form className="auth">
+            <div className="auth__border">
             
-            <button type="button" onClick={signIn}>Sign In</button>
-            <button type="button" onClick={signInWithGoogleRedirect}>Sign In With Google</button>
-            <button type="button" onClick={logOut}>Log Out</button>
+                <div className="auth__left">
+                    <h3 className="auth__title"> Login In</h3>           
+                </div>
+                <div>
+                    <input 
+                        placeholder="Email..." 
+                        type="text"
+                        onChange={(e) => setLoginEmail(e.target.value)}
+                    />
+                </div>
+
+                <div>
+                    <input 
+                        placeholder="Password..." 
+                        type="password"
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                    />
+                </div>
+                
+                <button className="auth__button-1"type="button" onClick={signIn}>Sign In</button>
+                
+            <div className="auth__inner-line"></div>
+
+                <div>
+                <button className="auth__button-2"type="button" onClick={signInWithGoogleRedirect}>Sign In With Google</button>
+                </div>
+
+            <div className="auth__inner-line"></div>
+
+                <div className="auth__signup">
+                    <div>
+                        <h3>Don't Have An Account?</h3>
+                    </div>
+                        <Link to={`/signup`}>
+                            <div>
+                                <button className="auth__button-3"> Sign Up</button>
+                            </div>
+                        </Link>
+                </div>
+            </div>
         </form>
     );
 };

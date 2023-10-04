@@ -7,13 +7,11 @@ function SignInPage() {
   return (
     
     <div>
-      <div className="logo2">
-      {/* <img className="logo__image2"src={logo} alt="Logo" /> */}
+      <div className="logo">
+      <img className="logo__image"src={logo} alt="Logo" />
       </div>
-      <div className="body2">
-        <div className="body__container2">
+      <div className="login">
         <Auth />
-        </div>
       </div>
     </div>
   );
