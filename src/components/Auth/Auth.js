@@ -3,7 +3,7 @@ import { auth, googleProvider } from "../../config/firebase"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword, getRedirectResult, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth"
+import { signInWithEmailAndPassword, getRedirectResult, signInWithRedirect} from "firebase/auth"
 
 export const Auth = () => {
     const [loginemail,setLoginEmail] = useState("");
@@ -61,12 +61,13 @@ export const Auth = () => {
             <div className="auth__border">
             
                 <div className="auth__left">
-                    <h3 className="auth__title"> Login In</h3>           
+                    <h3 className="auth__title"> Login</h3>           
                 </div>
                 <div>
                     <input 
                         placeholder="Email..." 
                         type="text"
+                        className="input__sign-in"
                         onChange={(e) => setLoginEmail(e.target.value)}
                     />
                 </div>
@@ -84,14 +85,14 @@ export const Auth = () => {
             <div className="auth__inner-line"></div>
 
                 <div>
-                <button className="auth__button-2"type="button" onClick={signInWithGoogleRedirect}>Sign In With Google</button>
+                <button className="auth__button-2"type="button" onClick={signInWithGoogleRedirect}>Sign in with Google</button>
                 </div>
 
             <div className="auth__inner-line"></div>
 
                 <div className="auth__signup">
                     <div>
-                        <h3>Don't Have An Account?</h3>
+                        <h3 className="auth__account">Don't Have An Account?</h3>
                     </div>
                         <Link to={`/signup`}>
                             <div>

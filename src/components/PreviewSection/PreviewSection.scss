@@ -8,6 +8,7 @@
 
   &__container {
     width: 60vw;
+    max-width: 40rem;
     margin-bottom: 1rem;
     background-color: #7d7b79;
     color: white;
@@ -32,6 +33,7 @@
 
   &__name-container {
     width: 60vw;
+    max-width: 40rem;
     margin-top: 1rem;
     background-color: #7d7b79;
     border-radius: 3px;
@@ -89,6 +91,7 @@
   &__container {
     background-color: #111111;
     width: 70vw;
+    max-width: 45rem;
     height: 100%;
     min-height: 65vh;
     padding-bottom: 2rem;

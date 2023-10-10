@@ -1,1 +1,8 @@
 @use "../../styles/partials/mixins" as *;
+.space-1 {
+  background-color: #111111;
+  padding: 1.5rem;
+  @include desktop {
+    padding: 0.5rem;
+  }
+}

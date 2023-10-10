@@ -11,6 +11,7 @@ function SignInPage() {
       <img className="logo__image"src={logo} alt="Logo" />
       </div>
       <div className="login">
+        <div className="space-1"></div>
         <Auth />
       </div>
     </div>

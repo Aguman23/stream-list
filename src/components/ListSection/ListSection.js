@@ -132,7 +132,7 @@ export default function ListSection() {
             
             <div className="">
             <input
-                className="section__add-list"
+                className="section__add-list input__name"
                 type="text" required
                 value={newListSection} 
                 placeholder="List Name..."
@@ -149,7 +149,7 @@ export default function ListSection() {
                         {editingSection === list.id ? (
                             <>
                                 <input
-                                    className="section section__edit"
+                                    className="section input__name section__edit"
                                     value={editedTitle}
                                     type="text"
                                     onChange={(e) => setEditedTitle(e.target.value)}

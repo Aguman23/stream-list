@@ -104,18 +104,21 @@ export default function ListItem({list, id}) {
             <input
                 value={newTitleItem}
                 type="text"
+                className="input__name"
                 placeholder="Add a Title..."
                 onChange={(e) => setNewTitleItem(e.target.value)}
             />
              <input
                 value={newRateItem}
                 type="text"
+                className="input__name"
                 placeholder="Give your Rating 1-10..."
                 onChange={(e) => setNewRateItem(e.target.value)}
             />
              <input
                 value={newCommentItem}
                 type="text"
+                className="input__name"
                 placeholder="Add Comments..."
                 onChange={(e) => setNewCommentItem(e.target.value)}
             />
@@ -130,19 +133,19 @@ export default function ListItem({list, id}) {
                             <>
                                 <input
                                     value={editedTitle}
-                                    className="section section__edit"
+                                    className="section input__name section__edit"
                                     type="text"
                                     onChange={(e) => setEditedTitle(e.target.value)}
                                 />
                                 <input
                                     value={editedRate}
-                                    className="section section__edit"
+                                    className="section input__name section__edit"
                                     type="text"
                                     onChange={(e) => setEditedRate(e.target.value)}
                                 />
                                 <input
                                     value={editedComment}
-                                    className="section section__edit"
+                                    className="section input__name section__edit"
                                     type="text"
                                     onChange={(e) => setEditedComment(e.target.value)}
                                 />
